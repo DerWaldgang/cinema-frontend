@@ -1,5 +1,5 @@
 import MaterialIcon from '@/components/ui/icon/MaterialIcon';
-import { useActions } from '@/hooks/useActions';
+import { useActions } from '@/hooks/admin/useActions';
 import React, { MouseEvent } from 'react';
 
 const LogoutButton = () => {

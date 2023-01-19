@@ -2,7 +2,7 @@ import SkeletonLoading from '@/components/ui/skeleton/SkeletonLoading'
 import React from 'react'
 
 import Menu from '../Menu'
-import { useGenres } from '../../../../../hooks/useGenres'
+import { useGenres } from '../../../../../hooks/useGenre'
 
 const GenreMenu = () => {
 	const { isLoading, data } = useGenres()

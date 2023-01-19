@@ -5,7 +5,7 @@ import Button from '@/components/ui/buttons/Button'
 import Heading from '@/components/ui/heading/Heading'
 import AuthInputField from '@/components/ui/input-fields/auth-field/AuthInputField'
 
-import { useActions } from '@/hooks/useActions'
+import { useActions } from '@/hooks/admin/useActions'
 import { useAuth } from '@/hooks/useAuth'
 import { useAuthRedirect } from '@/hooks/useAuthRedirect'
 

@@ -4,9 +4,9 @@ import cn from 'classnames'
 
 import styles from './Button.module.scss' 
 
-const Buttons: FC<IButton> = ({children, className, ...rest}) => {
+const Button: FC<IButton> = ({children, className, ...rest}) => {
 
     return <button className={cn(styles.button, className)} {...rest}>{children}</button>
 }
 
-export default Buttons
+export default Button

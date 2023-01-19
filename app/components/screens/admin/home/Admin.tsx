@@ -1,4 +1,4 @@
-import AdminNavigation from '@/components/ui/admin-nav/AdminNavigation'
+import AdminNavigation from '@/components/ui/admin-ui/admin-nav/AdminNavigation'
 import Heading from '@/components/ui/heading/Heading'
 import Meta from '@/utils/meta/Meta'
 import { FC } from 'react'
