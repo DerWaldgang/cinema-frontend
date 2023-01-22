@@ -3,9 +3,12 @@ import { ChangeEvent, useMemo, useState } from 'react'
 import { useMutation, useQuery } from 'react-query'
 import { toastr } from 'react-redux-toastr'
 
-import { useDebounce } from '@/hooks/useDebounce'
 import { ITableItem } from '@/components/ui/admin-ui/admin-table/AdminTable/admin-table.interface'
+
+import { useDebounce } from '@/hooks/useDebounce'
+
 import { GenreService } from '@/services/genre.service'
+
 import { getAdminUrl } from '@/config/url.config'
 
 export const useGenres = () => {
@@ -40,10 +43,10 @@ export const useGenres = () => {
 		'create genre',
 		() => GenreService.createGenre(),
 		{
-			onError(error) {
+			onError: (error) => {
 				toastError(error, 'Create genre')
 			},
-			onSuccess({ data: _id }) {
+			onSuccess: ({ data: _id }) => {
 				toastr.success('Create genre', 'create was successful')
 				push(getAdminUrl(`genre/edit/${_id}`))
 			},
@@ -54,10 +57,10 @@ export const useGenres = () => {
 		'delete genre',
 		(genreId: string) => GenreService.deleteGenre(genreId),
 		{
-			onError(error) {
+			onError: (error) => {
 				toastError(error, 'Delete genre')
 			},
-			onSuccess() {
+			onSuccess: () => {
 				toastr.success('Delete genre', 'delete was successful')
 				queryData.refetch()
 			},
@@ -76,6 +79,5 @@ export const useGenres = () => {
 	)
 }
 function toastError(error: unknown, arg1: string) {
-    throw new Error('Function not implemented.')
+	throw new Error('Function not implemented.')
 }
-

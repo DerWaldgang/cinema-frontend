@@ -1,14 +1,17 @@
-import { ITableItem } from '@/components/ui/admin-ui/admin-table/AdminTable/admin-table.interface'
-import { getAdminUrl } from '@/config/url.config'
-import { ActorService } from '@/services/actor.service'
-import { toastrError } from '@/utils/toastr/toast-error'
 import { useRouter } from 'next/router'
 import { ChangeEvent, useMemo, useState } from 'react'
 import { useMutation, useQuery } from 'react-query'
 import { toastr } from 'react-redux-toastr'
+
+import { ITableItem } from '@/components/ui/admin-ui/admin-table/AdminTable/admin-table.interface'
+
+import { ActorService } from '@/services/actor.service'
+
+import { toastrError } from '@/utils/toastr/toast-error'
+
+import { getAdminUrl } from '@/config/url.config'
+
 import { useDebounce } from '../useDebounce'
-
-
 
 export const useActors = () => {
 	const [searchTerm, setSearchTerm] = useState('')
@@ -42,10 +45,10 @@ export const useActors = () => {
 		'create actor',
 		() => ActorService.createActor(),
 		{
-			onError(error) {
+			onError: (error) => {
 				toastrError(error, 'Create actor')
 			},
-			onSuccess({ data: _id }) {
+			onSuccess: ({ data: _id }) => {
 				toastr.success('Create actor', 'create was successful')
 				push(getAdminUrl(`actor/edit/${_id}`))
 			},
@@ -56,10 +59,10 @@ export const useActors = () => {
 		'delete actor',
 		(actorId: string) => ActorService.deleteActor(actorId),
 		{
-			onError(error) {
+			onError: (error) => {
 				toastrError(error, 'Delete actor')
 			},
-			onSuccess() {
+			onSuccess: () => {
 				toastr.success('Delete actor', 'delete was successful')
 				queryData.refetch()
 			},

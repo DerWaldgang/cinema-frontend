@@ -3,6 +3,7 @@ import { IActor } from '@/shared/types/movies.types'
 import axios, { axiosClassic } from '@/utils/api/interceptors'
 
 import { getActorsUrl } from '@/config/api.config'
+import { IActorEditInput } from '@/components/screens/admin/actors/ActorEdit/actor-edit.interface'
 
 export const ActorService = {
 	async getActorBySlug(slug: string) {
@@ -13,9 +14,9 @@ export const ActorService = {
 		return axios.post<string>(getActorsUrl(''))
 	},
 
-	// async updateActor(_id: string, data: IActorEditInput) {
-	// 	return axios.put<string>(getActorsUrl(`/${_id}`), data)
-	// },
+	async updateActor(_id: string, data: IActorEditInput) {
+		return axios.put<string>(getActorsUrl(`/${_id}`), data)
+	},
 
 	async deleteActor(_id: string) {
 		return axios.delete<string>(getActorsUrl(`/${_id}`))
@@ -31,7 +32,7 @@ export const ActorService = {
 		})
 	},
 
-	// async getById(_id: string) {
-	// 	return axios.get<IActorEditInput>(getActorsUrl(`/${_id}`))
-	// },
+	async getByIdActor(_id: string) {
+		return axios.get<IActorEditInput>(getActorsUrl(`/${_id}`))
+	},
 }
