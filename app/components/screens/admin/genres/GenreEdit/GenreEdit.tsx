@@ -1,3 +1,4 @@
+import dynamic from 'next/dynamic'
 import { FC } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { stripHtml } from 'string-strip-html'
@@ -6,14 +7,6 @@ import AdminNavigation from '@/components/ui/admin-ui/admin-nav/AdminNavigation'
 import Button from '@/components/ui/buttons/Button'
 import Heading from '@/components/ui/heading/Heading'
 import InputField from '@/components/ui/input-fields/InputField'
-
-
-const DynamicFieldTextEditor= dynamic(
-	() => import('@/components/ui/input-fields/editor-field/FieldTextEditor'),
-	{
-		ssr: false,
-	}
-)
 import SlugField from '@/components/ui/input-fields/slug-field/SlugField'
 import SkeletonLoading from '@/components/ui/skeleton/SkeletonLoading'
 
@@ -25,7 +18,13 @@ import Meta from '@/utils/meta/Meta'
 import { generateSlug } from '@/utils/string/generateSlug'
 
 import { IGenreEditInput } from './genre-edit.interface'
-import dynamic from 'next/dynamic'
+
+const DynamicFieldTextEditor = dynamic(
+	() => import('@/components/ui/input-fields/editor-field/FieldTextEditor'),
+	{
+		ssr: false,
+	}
+)
 
 const GenreEdit: FC = () => {
 	const {
@@ -46,7 +45,7 @@ const GenreEdit: FC = () => {
 			<Heading title="Edit genre" className="mb-6" />
 			<form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
 				{isLoading ? (
-					<SkeletonLoading count={2} className='h-36'/>
+					<SkeletonLoading count={2} className="h-36" />
 				) : (
 					<>
 						<div className={styles.fields}>
@@ -77,32 +76,32 @@ const GenreEdit: FC = () => {
 								error={errors.icon}
 								style={{ width: '31%' }}
 							/>
-                            						</div>
-							<Controller
-								control={control}
-								name="description"
-								defaultValue=""
-								render={({
-									field: { value, onChange },
-									fieldState: { error },
-								}) => (
-									<DynamicFieldTextEditor
-										onChange={onChange}
-										error={error}
-										value={value}
-										placeholder="Description"
-									/>
-								)}
-								rules={{
-									validate: {
-										required: (value) =>
-											(value && stripHtml(value).result.length > 0) ||
-											'Description is required',
-									},
-								}}
-							/>
+						</div>
+						<Controller
+							control={control}
+							name="description"
+							defaultValue=""
+							render={({
+								field: { value, onChange },
+								fieldState: { error },
+							}) => (
+								<DynamicFieldTextEditor
+									onChange={onChange}
+									error={error}
+									value={value}
+									placeholder="Description"
+								/>
+							)}
+							rules={{
+								validate: {
+									required: (value) =>
+										(value && stripHtml(value).result.length > 0) ||
+										'Description is required',
+								},
+							}}
+						/>
 
-							<Button>Update</Button>
+						<Button>Update</Button>
 					</>
 				)}
 			</form>
