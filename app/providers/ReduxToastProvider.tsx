@@ -11,6 +11,7 @@ const ReduxToastProvider = () => {
         timeOut={4000}
         transitionIn="fadeIn"
         transitionOut="fadeOut"
+        
 
         // position="top-left"
 

@@ -1,0 +1,36 @@
+@import '../../../../styles/_variables.scss';
+
+.slider {
+	@apply relative mx-auto;
+	max-width: 1200px;
+
+	.slide {
+		@apply relative h-80 rounded-3xl overflow-hidden shadow-xl flex items-end;
+
+		@include fade-bg-gradient();
+
+		.image {
+			@apply image-like-bg;
+            object-fit: fill;
+            width: 100%;
+            height: 100%;
+		}
+
+		.content {
+			@apply absolute z-10 p-8;
+
+			.heading {
+				@apply text-white uppercase text-5xl font-semibold mb-1 text-shadow;
+			}
+
+			.subHeading {
+				@apply text-gray-300 font-medium uppercase mb-4 text-shadow;
+			}
+
+			.button {
+				@apply btn-primary p-2 px-10;
+			}
+		}
+	}
+}
+
