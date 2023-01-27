@@ -22,6 +22,10 @@ export const ActorService = {
 		return axios.delete<string>(getActorsUrl(`/${_id}`))
 	},
 
+	async getBySlugActor(slug:string){
+		return axiosClassic.get<IActor>(getActorsUrl(`by-slug/${slug}`))
+	},
+
 	async getAllActors(searchTerm?: string) {
 		return axiosClassic.get<IActor[]>(getActorsUrl(``), {
 			params: searchTerm

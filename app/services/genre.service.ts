@@ -5,6 +5,7 @@ import { IGenre } from '@/shared/types/movies.types'
 import axios, { axiosClassic } from '@/utils/api/interceptors'
 
 import { getGenresUrl } from '@/config/api.config'
+import { getGenreSlugUrl } from '@/config/url.config'
 
 export const GenreService = {
 	async getAllGenres(searchTerm?: string) {
@@ -15,6 +16,10 @@ export const GenreService = {
 				  }
 				: {},
 		})
+	},
+
+	async getBySlugGenre(slug: string) {
+		return axiosClassic.get<IGenre>(getGenresUrl(`by-slug/${slug}`))
 	},
 
     // IGenreEditInput ? 

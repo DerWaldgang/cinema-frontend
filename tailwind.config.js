@@ -91,14 +91,14 @@ module.exports = {
 						backgroundColor: '#ff0009',
 					},
 				},
-				'text-link': {
+				'.text-link': {
 					textUnderlineOffset: 4,
 					color: 'rgba(255, 255, 255, .9)',
 					transition: 'text-decoration-color .3s ease-in-out',
 					textDecorationLine: 'underline',
 					textDecorationColor: 'rgba(255, 255, 255, 0.2)',
 					'&:hover': {
-						textDecorationColor: 'rgba(255, 255, 255, 0.9)',
+						textDecorationColor: '#ff0009',
 					},
 				},
 				'.air-block': {
