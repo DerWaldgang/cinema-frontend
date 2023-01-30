@@ -6,10 +6,11 @@ import { useMutation, useQuery } from 'react-query'
 import { ActorService } from '@/services/actor.service'
 
 import { getKeys } from '@/utils/object/getKeys'
-import { toastrError } from '@/utils/toastr/toast-error'
-import { toastr } from 'react-redux-toastr'
+import { toastError } from '@/utils/toast/toast-error'
+
 import { getAdminUrl } from '@/config/url.config'
 import { IActorEditInput } from '@/components/screens/admin/actors/ActorEdit/actor-edit.interface'
+import { toast } from 'react-toastify'
 
 export const useActorEdit = (setValue: UseFormSetValue<IActorEditInput>) => {
 	const { query, push } = useRouter()
@@ -26,7 +27,7 @@ export const useActorEdit = (setValue: UseFormSetValue<IActorEditInput>) => {
 				})
 			},
 			onError(error) {
-				toastrError(error, 'Cant get the actor')
+				toastError(error, 'Cant get the actor')
 			},
 			enabled: !!query.id, // enabled if there is query.id
 		}
@@ -34,11 +35,11 @@ export const useActorEdit = (setValue: UseFormSetValue<IActorEditInput>) => {
 
     const {mutateAsync: updateAsync} = useMutation('edit actor',(data: IActorEditInput) => ActorService.updateActor(actorId, data), {
         onSuccess() {
-           toastr.success('Updating actor', 'Successfully updated')
+           toast.success('Actor successfully updated')
            push(getAdminUrl('actors'))
         },
         onError(error) {
-            toastrError(error, 'Actor not updated')
+            toastError(error, 'Actor not updated')
         },
     })
     

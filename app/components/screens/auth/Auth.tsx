@@ -6,8 +6,8 @@ import Heading from '@/components/ui/heading/Heading'
 import AuthInputField from '@/components/ui/input-fields/auth-field/AuthInputField'
 
 import { useActions } from '@/hooks/admin/useActions'
-import { useAuth } from '@/hooks/useAuth'
-import { useAuthRedirect } from '@/hooks/useAuthRedirect'
+import { useAuth } from '@/hooks/auth/useAuth'
+import { useAuthRedirect } from '@/hooks/auth/useAuthRedirect'
 
 import Meta from '@/utils/meta/Meta'
 

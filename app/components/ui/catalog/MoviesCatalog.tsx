@@ -6,9 +6,8 @@ import { getMovieSlugUrl } from '@/config/url.config'
 
 import styles from './MoviesCatalog.module.scss'
 import { ICatalog } from './catalog.interface'
-import dynamic from 'next/dynamic'
+
 import GalleryItem from '../gallery/GalleryItem'
-// const DynamicDescription = dynamic(() => import('../heading/Description') )
 import Description from '../heading/Description'
 import Heading from '../heading/Heading'
 

@@ -1,7 +1,7 @@
 export const getStoreLocalStorage = (name: string) => {
     if(typeof localStorage !== 'undefined') {
-        const localSt = localStorage.getItem(name)
-        return localSt ? JSON.parse(localSt) : null
+        const localStorageItem = localStorage.getItem(name)
+        return localStorageItem ? JSON.parse(localStorageItem) : null
     }
     return null
 }

@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import { ChangeEvent, useMemo, useState } from 'react'
 import { useMutation, useQuery } from 'react-query'
-import { toastr } from 'react-redux-toastr'
+
 
 import { ITableItem } from '@/components/ui/admin-ui/admin-table/AdminTable/admin-table.interface'
 
@@ -10,6 +10,8 @@ import { useDebounce } from '@/hooks/useDebounce'
 import { GenreService } from '@/services/genre.service'
 
 import { getAdminUrl } from '@/config/url.config'
+import { toast } from 'react-toastify'
+import { toastError } from '@/utils/toast/toast-error'
 
 export const useGenres = () => {
 	const [searchTerm, setSearchTerm] = useState('')
@@ -47,7 +49,7 @@ export const useGenres = () => {
 				toastError(error, 'Create genre')
 			},
 			onSuccess: ({ data: _id }) => {
-				toastr.success('Create genre', 'create was successful')
+				toast.success('Genre was created successfully')
 				push(getAdminUrl(`genre/edit/${_id}`))
 			},
 		}
@@ -61,7 +63,7 @@ export const useGenres = () => {
 				toastError(error, 'Delete genre')
 			},
 			onSuccess: () => {
-				toastr.success('Delete genre', 'delete was successful')
+				toast.success('Genre was deleted successfully')
 				queryData.refetch()
 			},
 		}
@@ -78,6 +80,4 @@ export const useGenres = () => {
 		[queryData, searchTerm, deleteAsync, createAsync]
 	)
 }
-function toastError(error: unknown, arg1: string) {
-	throw new Error('Function not implemented.')
-}
+

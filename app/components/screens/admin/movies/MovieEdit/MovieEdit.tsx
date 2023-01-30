@@ -1,7 +1,6 @@
 import dynamic from 'next/dynamic'
-import { FC, useEffect } from 'react'
+import { FC } from 'react'
 import { Controller, useForm } from 'react-hook-form'
-import { stripHtml } from 'string-strip-html'
 
 import AdminNavigation from '@/components/ui/admin-ui/admin-nav/AdminNavigation'
 import Button from '@/components/ui/buttons/Button'

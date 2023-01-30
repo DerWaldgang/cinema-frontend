@@ -1,10 +1,9 @@
 import { ChangeEvent, useCallback, useMemo, useState } from 'react'
 import { useMutation } from 'react-query'
-import { toastr } from 'react-redux-toastr'
 
 import { FileService } from '@/services/file.service'
 
-import { toastrError } from '@/utils/toastr/toast-error'
+import { toastError } from '@/utils/toast/toast-error'
 
 type TypeUpload = (
 	onChange: (...event: any[]) => void,
@@ -24,7 +23,7 @@ export const useUploads: TypeUpload = (onChange, folder) => {
 				onChange(data[0].url)
 			},
 			onError: (error) => {
-				toastrError(error, 'Upload file')
+				toastError(error, 'Upload file')
 			},
 		}
 	)

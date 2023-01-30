@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import { FC, useEffect } from 'react'
 
 import { useActions } from '@/hooks/admin/useActions'
-import { useAuth } from '@/hooks/useAuth'
+import { useAuth } from '@/hooks/auth/useAuth'
 
 import { TypeComponentAuthFields } from '@/shared/types/auth.types'
 

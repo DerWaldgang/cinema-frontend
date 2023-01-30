@@ -2,7 +2,7 @@ import { useQuery } from 'react-query'
 
 import { IOptions } from '@/components/ui/select/select.interface'
 
-import { toastrError } from '@/utils/toastr/toast-error'
+import { toastError } from '@/utils/toast/toast-error'
 import { ActorService } from '@/services/actor.service'
 
 export const useActorLabelSelector = () => {
@@ -15,7 +15,7 @@ export const useActorLabelSelector = () => {
 					(actor): IOptions => ({ label: actor.name, value: actor._id })
 				),
 			onError: (error) => {
-				toastrError(error, 'Actors label selector error')
+				toastError(error, 'Actors label selector error')
 			},
 		}
 	)

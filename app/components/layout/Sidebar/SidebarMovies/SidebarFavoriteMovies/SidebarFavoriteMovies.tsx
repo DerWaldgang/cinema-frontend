@@ -3,8 +3,8 @@ import React from 'react';
 
 const SidebarFavoriteMovies = () => {
     return (
-        <div>
-
+        <div className='text-white mt-5'>
+            ***FAVORITE MOVIES***
         </div>
     );
 };

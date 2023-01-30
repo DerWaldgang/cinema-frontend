@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import { ChangeEvent, useMemo, useState } from 'react'
 import { useMutation, useQuery } from 'react-query'
-import { toastr } from 'react-redux-toastr'
+import { toast } from 'react-toastify'
 
 import { ITableItem } from '@/components/ui/admin-ui/admin-table/AdminTable/admin-table.interface'
 
@@ -10,7 +10,7 @@ import { useDebounce } from '@/hooks/useDebounce'
 import { MovieService } from '@/services/movie.service'
 
 import { getGenresList } from '@/utils/movie/getGenreEachList'
-import { toastrError } from '@/utils/toastr/toast-error'
+import { toastError } from '@/utils/toast/toast-error'
 
 import { getAdminUrl } from '@/config/url.config'
 
@@ -35,7 +35,7 @@ export const useMovies = () => {
 					})
 				),
 			onError(error) {
-				toastrError(error, 'movie list')
+				toastError(error, 'movie list')
 			},
 		}
 	)
@@ -51,10 +51,10 @@ export const useMovies = () => {
 		() => MovieService.createMovie(),
 		{
 			onError: (error) => {
-				toastrError(error, 'Create movie')
+				toastError(error, 'Create movie')
 			},
 			onSuccess: ({ data: _id }) => {
-				toastr.success('Create movie', 'create was successful')
+				toast.success('Movie was created successfully')
 				push(getAdminUrl(`movie/edit/${_id}`))
 			},
 		}
@@ -65,10 +65,10 @@ export const useMovies = () => {
 		(movieId: string) => MovieService.deleteMovie(movieId),
 		{
 			onError: (error) => {
-				toastrError(error, 'Delete movie')
+				toastError(error, 'Delete movie')
 			},
 			onSuccess: () => {
-				toastr.success('Delete movie', 'delete was successful')
+				toast.success('Movie was deleted successfully')
 				queryData.refetch()
 			},
 		}

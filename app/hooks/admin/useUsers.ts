@@ -1,17 +1,18 @@
 import { ChangeEvent, useMemo, useState } from 'react'
 import { useMutation, useQuery } from 'react-query'
-import { toastr } from 'react-redux-toastr'
+
 
 import { ITableItem } from '@/components/ui/admin-ui/admin-table/AdminTable/admin-table.interface'
 
 import { UserService } from '@/services/user.service'
 
 import { convertMongoDate } from '@/utils/date/convertMongoDate'
-import { toastrError } from '@/utils/toastr/toast-error'
+import { toastError } from '@/utils/toast/toast-error'
 
 import { getAdminUrl } from '@/config/url.config'
 
 import { useDebounce } from '../useDebounce'
+import { toast } from 'react-toastify'
 
 export const useUsers = () => {
 	const [searchTerm, setSearchTerm] = useState('')
@@ -31,7 +32,7 @@ export const useUsers = () => {
 				),
 
 			onError: (error) => {
-				toastrError(error, 'User List')
+				toastError(error, 'User List')
 			},
 
 			// enabled: !!debouncedSearch
@@ -47,10 +48,10 @@ export const useUsers = () => {
 		(userId: string) => UserService.deleteUser(userId),
 		{
 			onError: (error) => {
-				toastrError(error, 'Delete user')
+				toastError(error, 'Delete user')
 			},
 			onSuccess: () => {
-				toastr.success('Delete user', 'user was successfully deleted')
+				toast.success('User was successfully deleted')
 				queryData.refetch()
 			},
 		}

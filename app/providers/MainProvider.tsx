@@ -10,8 +10,10 @@ import { store } from '@/store/store'
 
 import AuthProvider from './AuthProvider/AuthProvider'
 import HeadProgressProvider from './HeadProgressProvider/HeadProgressProvider'
-import ReduxToastProvider from './ReduxToastProvider'
-
+import ReduxToastProvider from './ToastProvider'
+import { ToastContainer } from 'react-toastify'
+import "react-toastify/dist/ReactToastify.css";
+import ToastProvider from './ToastProvider'
 const queryClient = new QueryClient({
 	defaultOptions: {
 		queries: {
@@ -25,7 +27,8 @@ const MainProvider: FC<TypeComponentAuthFields> = ({ children, Component }) => {
 		<HeadProgressProvider>
 			<Provider store={store}>
 				<QueryClientProvider client={queryClient}>
-					<ReduxToastProvider />
+					<ToastProvider />
+
 					<AuthProvider Component={Component}>
 						<Layout>{children}</Layout>
 					</AuthProvider>

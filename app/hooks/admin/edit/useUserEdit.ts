@@ -1,14 +1,13 @@
 import { useRouter } from 'next/router'
 import { SubmitHandler, UseFormSetValue } from 'react-hook-form'
 import { useMutation, useQuery } from 'react-query'
-import { toastr } from 'react-redux-toastr'
+import { toast } from 'react-toastify'
 
 import { IUserEditInput } from '@/components/screens/admin/users/UserEdit/user-edit.interface'
 
 import { UserService } from '@/services/user.service'
 
-import { getKeys } from '@/utils/object/getKeys'
-import { toastrError } from '@/utils/toastr/toast-error'
+import { toastError } from '@/utils/toast/toast-error'
 
 import { getAdminUrl } from '@/config/url.config'
 
@@ -23,10 +22,10 @@ export const useUserEdit = (setValue: UseFormSetValue<IUserEditInput>) => {
 		{
 			onSuccess({ data }) {
 				setValue('email', data.email)
-                setValue('isAdmin', data.isAdmin)
+				setValue('isAdmin', data.isAdmin)
 			},
 			onError(error) {
-				toastrError(error, 'Cant get the user')
+				toastError(error, 'Cant get the user')
 			},
 			enabled: !!query.id, // enabled if there is query.id
 		}
@@ -37,11 +36,11 @@ export const useUserEdit = (setValue: UseFormSetValue<IUserEditInput>) => {
 		(data: IUserEditInput) => UserService.updateUser(userId, data),
 		{
 			onSuccess() {
-				toastr.success('Updating user', 'Successfully updated')
+				toast.success('User successfully updated')
 				push(getAdminUrl('users'))
 			},
 			onError(error) {
-				toastrError(error, 'User not updated')
+				toastError(error, 'User not updated')
 			},
 		}
 	)

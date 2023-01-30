@@ -1,13 +1,12 @@
-import dynamic from 'next/dynamic'
 import { FC } from 'react'
 import { Controller, useForm } from 'react-hook-form'
-import { stripHtml } from 'string-strip-html'
 
 import AdminNavigation from '@/components/ui/admin-ui/admin-nav/AdminNavigation'
 import Button from '@/components/ui/buttons/Button'
 import Heading from '@/components/ui/heading/Heading'
 import InputField from '@/components/ui/input-fields/InputField'
 import SlugField from '@/components/ui/input-fields/slug-field/SlugField'
+import UploadField from '@/components/ui/input-fields/upload-field/UploadField'
 import SkeletonLoading from '@/components/ui/skeleton/SkeletonLoading'
 
 import styles from '@/ui/input-fields/AdminForms.module.scss'
@@ -18,8 +17,6 @@ import Meta from '@/utils/meta/Meta'
 import { generateSlug } from '@/utils/string/generateSlug'
 
 import { IActorEditInput } from './actor-edit.interface'
-import UploadField from '@/components/ui/input-fields/upload-field/UploadField'
-
 
 const ActorEdit: FC = () => {
 	const {
@@ -33,7 +30,7 @@ const ActorEdit: FC = () => {
 		mode: 'onChange',
 	})
 	const { isLoading, onSubmit } = useActorEdit(setValue)
-  
+
 	return (
 		<Meta title="Edit actor">
 			<AdminNavigation />
@@ -61,17 +58,23 @@ const ActorEdit: FC = () => {
 							/>
 
 							<Controller
-							control={control}
-							name="photo"
-							defaultValue=""
-							render={({
-								field: { value, onChange },
-								fieldState: { error },
-							}) => (
-								<UploadField onChange={onChange} value={value} error={error} placeholder='Photo' folder='actors'/>
-							)}
-							rules={{required: 'Photo is required'}}
-						/>
+								control={control}
+								name="photo"
+								defaultValue=""
+								render={({
+									field: { value, onChange },
+									fieldState: { error },
+								}) => (
+									<UploadField
+										onChange={onChange}
+										value={value}
+										error={error}
+										placeholder="Photo"
+										folder="actors"
+									/>
+								)}
+								rules={{ required: 'Photo is required' }}
+							/>
 						</div>
 						<Button>Update</Button>
 					</>

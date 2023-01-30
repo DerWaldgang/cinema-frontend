@@ -23,6 +23,10 @@ export const MovieService = {
 		)
 		return movies
 	},
+	async getBySlugMovie (slug: string) {
+		return axiosClassic.get<IMovie>(getMoviesUrl(`by-slug/${slug}`))
+	},
+
 	async getMoviesByGenres(genreIds: string[]) {
 		return axiosClassic.post<IMovie[]>(getMoviesUrl('/by-genres'), {
 			genreIds

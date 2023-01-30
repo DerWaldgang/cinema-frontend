@@ -7,9 +7,10 @@ import { IGenreEditInput } from '@/components/screens/admin/genres/GenreEdit/gen
 import { GenreService } from '@/services/genre.service'
 
 import { getKeys } from '@/utils/object/getKeys'
-import { toastrError } from '@/utils/toastr/toast-error'
-import { toastr } from 'react-redux-toastr'
+import { toastError } from '@/utils/toast/toast-error'
+
 import { getAdminUrl } from '@/config/url.config'
+import { toast } from 'react-toastify'
 
 export const useGenreEdit = (setValue: UseFormSetValue<IGenreEditInput>) => {
 	const { query, push } = useRouter()
@@ -26,7 +27,7 @@ export const useGenreEdit = (setValue: UseFormSetValue<IGenreEditInput>) => {
 				})
 			},
 			onError(error) {
-				toastrError(error, 'Cant get the genre')
+				toastError(error, 'Cant get the genre')
 			},
 			enabled: !!query.id, // enabled if there is query.id
 		}
@@ -34,11 +35,11 @@ export const useGenreEdit = (setValue: UseFormSetValue<IGenreEditInput>) => {
 
     const {mutateAsync: updateAsync} = useMutation('edit genre',(data: IGenreEditInput) => GenreService.updateGenre(genreId, data), {
         onSuccess() {
-           toastr.success('Updating genre', 'Successfully updated')
+			toast.success('Genre successfully updated')
            push(getAdminUrl('genres'))
         },
         onError(error) {
-            toastrError(error, 'Genre not updated')
+            toastError(error, 'Genre not updated')
         },
     })
     

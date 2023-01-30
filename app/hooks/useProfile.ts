@@ -1,12 +1,13 @@
 import { SubmitHandler, UseFormSetValue } from 'react-hook-form'
 import { useMutation, useQuery } from 'react-query'
-import { toastr } from 'react-redux-toastr'
+
 
 import { IProfileField } from '@/components/screens/profile/profile.interface'
 
 import { UserService } from '@/services/user.service'
 
-import { toastrError } from '@/utils/toastr/toast-error'
+import { toastError } from '@/utils/toast/toast-error'
+import { toast } from 'react-toastify'
 
 export const useProfile = (setValue: UseFormSetValue<IProfileField>) => {
 	const { isLoading } = useQuery(
@@ -17,7 +18,7 @@ export const useProfile = (setValue: UseFormSetValue<IProfileField>) => {
 				setValue('email', data.email)
 			},
 			onError(error) {
-				toastrError(error, 'Cant get profile')
+				toastError(error, 'Cant get profile')
 			},
 		}
 	)
@@ -27,10 +28,10 @@ export const useProfile = (setValue: UseFormSetValue<IProfileField>) => {
 		(data: IProfileField) => UserService.updateProfile(data),
 		{
 			onSuccess() {
-				toastr.success('Updating user', 'Successfully updated')
+				toast.success('Profile was successfully updated')
 			},
 			onError(error) {
-				toastrError(error, 'Profile not updated')
+				toastError(error, 'Profile updated')
 			},
 		}
 	)

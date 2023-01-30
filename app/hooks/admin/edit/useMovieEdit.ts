@@ -1,16 +1,17 @@
 import { useRouter } from 'next/router'
 import { SubmitHandler, UseFormSetValue } from 'react-hook-form'
 import { useMutation, useQuery } from 'react-query'
-import { toastr } from 'react-redux-toastr'
+
 
 import { IMovieEditInput } from '@/components/screens/admin/movies/MovieEdit/movie-edit.interface'
 
 import { MovieService } from '@/services/movie.service'
 
 import { getKeys } from '@/utils/object/getKeys'
-import { toastrError } from '@/utils/toastr/toast-error'
+import { toastError } from '@/utils/toast/toast-error'
 
 import { getAdminUrl } from '@/config/url.config'
+import { toast } from 'react-toastify'
 
 export const useMovieEdit = (setValue: UseFormSetValue<IMovieEditInput>) => {
 	const { query, push } = useRouter()
@@ -27,7 +28,7 @@ export const useMovieEdit = (setValue: UseFormSetValue<IMovieEditInput>) => {
 				})
 			},
 			onError(error) {
-				toastrError(error, 'Cant get the movie')
+				toastError(error, 'Cant get the movie')
 			},
 			enabled: !!query.id, // enabled if there is query.id
 		}
@@ -38,11 +39,11 @@ export const useMovieEdit = (setValue: UseFormSetValue<IMovieEditInput>) => {
 		(data: IMovieEditInput) => MovieService.updateMovie(movieId, data),
 		{
 			onSuccess() {
-				toastr.success('Updating movie', 'Successfully updated')
+				toast.success('Movie successfully updated')
 				push(getAdminUrl('movies'))
 			},
 			onError(error) {
-				toastrError(error, 'Movie not updated')
+				toastError(error, 'Movie not updated')
 			},
 		}
 	)
