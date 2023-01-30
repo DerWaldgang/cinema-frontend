@@ -1,4 +1,4 @@
-import axios from '@/utils/api/interceptors'
+import axios from 'api/interceptors'
 
 export const FileService = {
 	async uploadFile(file: FormData, folder?: string) {

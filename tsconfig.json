@@ -29,6 +29,6 @@
       "@/utils/*": ["utils/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "app/components/ui/input-fields/auth-field/AuthInputField.jsx"],
   "exclude": ["node_modules"]
 }

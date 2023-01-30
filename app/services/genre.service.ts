@@ -2,9 +2,10 @@ import { IGenreEditInput } from '@/components/screens/admin/genres/GenreEdit/gen
 
 import { IGenre } from '@/shared/types/movies.types'
 
-import axios, { axiosClassic } from '@/utils/api/interceptors'
+import axios, { axiosClassic } from 'api/interceptors'
 
 import { getGenresUrl } from '@/config/api.config'
+import { ICatalog } from '@/components/screens/catalogs-collections/catalogs.interface'
 
 
 export const GenreService = {
@@ -20,6 +21,10 @@ export const GenreService = {
 
 	async getBySlugGenre(slug: string) {
 		return axiosClassic.get<IGenre>(getGenresUrl(`by-slug/${slug}`))
+	},
+
+	async getMovieCatalogs() {
+		return axiosClassic.get<ICatalog[]>(getGenresUrl(`catalogs`))
 	},
 
     // IGenreEditInput ? 

@@ -47,7 +47,7 @@ const FavoriteButton: FC<{ movieId: string, isAbsolute?: boolean }> = ({ movieId
 				[styles.animate]: isHeartClicked,
                 [styles.button]: isAbsolute ? 'absolute right-0 bottom-20' : ' '
 			})}
-			style={{ backgroundImage: `url(${HeartImage.src})` }}
+			style={{ backgroundImage: `url('/heart-animation.png')` }}
 		/>
 	)
 }

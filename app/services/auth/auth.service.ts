@@ -1,5 +1,5 @@
-import { getContentTypeHTTP } from '@/utils/api/api.helpers'
-import { axiosClassic } from '@/utils/api/interceptors'
+import { getContentTypeHTTP } from 'api/api.helpers'
+import { axiosClassic } from 'api/interceptors'
 import Cookies from 'js-cookie'
 
 import { getAuthUrl } from '@/config/api.config'

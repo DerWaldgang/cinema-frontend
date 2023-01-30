@@ -1,5 +1,5 @@
 import { getRatingsUrl } from "@/config/api.config"
-import axios from "@/utils/api/interceptors"
+import axios from "api/interceptors"
 
 export const ratingService = {
     async setRating(movieId: string, value: number) {

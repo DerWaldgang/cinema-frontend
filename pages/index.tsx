@@ -12,13 +12,17 @@ import { getGenresList } from '@/utils/movie/getGenreEachList'
 
 import { getActorSlugUrl, getMovieSlugUrl } from '@/config/url.config'
 
+import Error404 from './404'
+
 const HomePage: NextPage<IHome> = ({ slides, actors, trendingMovies }) => {
-	return (
+	return trendingMovies ? (
 		<Home slides={slides} actors={actors} trendingMovies={trendingMovies} />
+	) : (
+		<Error404 />
 	)
 }
 
-export const getStaticProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
 	try {
 		const { data: movies } = await MovieService.getAllMovies()
 
@@ -56,6 +60,7 @@ export const getStaticProps = async () => {
 				actors,
 				trendingMovies,
 			} as IHome,
+			revalidate: 60,
 		}
 	} catch (error) {
 		return {

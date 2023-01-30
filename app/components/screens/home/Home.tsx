@@ -22,9 +22,6 @@ const Home: FC<IHome> = ({ slides, actors, trendingMovies }) => {
 			/>
 
 			{slides?.length && <Slider slides={slides} />}
-			<button onClick={() => toast.success('Success')} className="text-white">
-				toast
-			</button>
 
 			<div className="my-10">
 				<SubHeading title="Trending now" />

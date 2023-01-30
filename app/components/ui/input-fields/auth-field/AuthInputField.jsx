@@ -6,16 +6,18 @@ import {
 
 import { validEmail } from '@/shared/regex/auth-field.regex'
 
-import InputField from '.././InputField'
+import InputField from '../InputField'
 
-interface IAuthInputField {
-	register: UseFormRegister<any>
-	formState: FormState<any>
-	isPasswordRequired?: boolean
-}
+// interface IAuthInputField {
+// 	register: UseFormRegister<any>
+// 	formState: FormState<any>
+// 	isPasswordRequired?: boolean
+// }
+
+// TODO: implement rigth TS for InputField
 
 // error={errors.message} TODO: error={errors.email}
-const AuthInputField: FC<IAuthInputField> = ({
+const AuthInputField = ({
 	register,
 	formState: { errors },
 	isPasswordRequired = false,

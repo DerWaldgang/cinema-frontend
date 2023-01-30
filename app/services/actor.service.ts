@@ -1,6 +1,6 @@
 import { IActor } from '@/shared/types/movies.types'
 
-import axios, { axiosClassic } from '@/utils/api/interceptors'
+import axios, { axiosClassic } from 'api/interceptors'
 
 import { getActorsUrl } from '@/config/api.config'
 import { IActorEditInput } from '@/components/screens/admin/actors/ActorEdit/actor-edit.interface'

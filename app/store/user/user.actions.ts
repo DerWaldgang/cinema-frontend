@@ -5,7 +5,7 @@ import { AuthService } from '@/services/auth/auth.service'
 import { toastError } from '@/utils/toast/toast-error'
 
 import { IAuthResponse, IEmailPassword } from './user.interface'
-import { errorCatch } from '@/utils/api/api.helpers'
+import { errorCatch } from 'api/api.helpers'
 import { toast } from 'react-toastify'
 
 export const register = createAsyncThunk<IAuthResponse, IEmailPassword>(
