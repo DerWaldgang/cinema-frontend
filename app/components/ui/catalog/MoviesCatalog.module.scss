@@ -3,7 +3,7 @@
 }
 
 .movies{
-    @apply flex flex-wrap mt-8 gap-8;
+    @apply flex flex-wrap mt-8 gap-6;
 
     >a{
         @apply animate-fade;

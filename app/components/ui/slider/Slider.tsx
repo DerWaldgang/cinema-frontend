@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import { CSSTransition } from 'react-transition-group'
 
-import { useSlider } from '@/hooks/useSlider'
+import { useSlider } from '@/hooks/movie/useSlider'
 
 import SlideArrow from './SlideArrow/SlideArrow'
 import SlideItem from './SlideItem'

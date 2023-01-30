@@ -10,10 +10,9 @@ import { store } from '@/store/store'
 
 import AuthProvider from './AuthProvider/AuthProvider'
 import HeadProgressProvider from './HeadProgressProvider/HeadProgressProvider'
-import ReduxToastProvider from './ToastProvider'
-import { ToastContainer } from 'react-toastify'
 import "react-toastify/dist/ReactToastify.css";
 import ToastProvider from './ToastProvider'
+
 const queryClient = new QueryClient({
 	defaultOptions: {
 		queries: {

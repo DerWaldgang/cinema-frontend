@@ -34,7 +34,7 @@ export const useMovies = () => {
 						],
 					})
 				),
-			onError(error) {
+			onError: (error) => {
 				toastError(error, 'movie list')
 			},
 		}

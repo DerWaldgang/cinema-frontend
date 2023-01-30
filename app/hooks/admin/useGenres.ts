@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import { ChangeEvent, useMemo, useState } from 'react'
 import { useMutation, useQuery } from 'react-query'
-
+import { toast } from 'react-toastify'
 
 import { ITableItem } from '@/components/ui/admin-ui/admin-table/AdminTable/admin-table.interface'
 
@@ -9,9 +9,9 @@ import { useDebounce } from '@/hooks/useDebounce'
 
 import { GenreService } from '@/services/genre.service'
 
-import { getAdminUrl } from '@/config/url.config'
-import { toast } from 'react-toastify'
 import { toastError } from '@/utils/toast/toast-error'
+
+import { getAdminUrl } from '@/config/url.config'
 
 export const useGenres = () => {
 	const [searchTerm, setSearchTerm] = useState('')
@@ -29,7 +29,7 @@ export const useGenres = () => {
 						items: [genre.name, genre.slug],
 					})
 				),
-			onError(error) {
+			onError: (error) => {
 				toastError(error, 'genre list')
 			},
 		}
@@ -80,4 +80,3 @@ export const useGenres = () => {
 		[queryData, searchTerm, deleteAsync, createAsync]
 	)
 }
-

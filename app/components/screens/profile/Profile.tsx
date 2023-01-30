@@ -6,7 +6,7 @@ import Heading from '@/components/ui/heading/Heading'
 import AuthInputField from '@/components/ui/input-fields/auth-field/AuthInputField'
 import SkeletonLoading from '@/components/ui/skeleton/SkeletonLoading'
 
-import { useProfile } from '@/hooks/useProfile'
+import { useProfile } from '@/hooks/user/useProfile'
 
 import Meta from '@/utils/meta/Meta'
 

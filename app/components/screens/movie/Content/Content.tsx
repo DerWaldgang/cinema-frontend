@@ -8,6 +8,7 @@ import { getActorSlugUrl, getGenreSlugUrl } from '@/config/url.config'
 
 import styles from './Content.module.scss'
 import ContentList from './ContentList/ContentList'
+import FavoriteButton from '../../favorites/FavoriteButton/FavoriteButton'
 
 const Content: FC<{ movie: IMovie }> = ({ movie }) => {
 	return (
@@ -42,7 +43,10 @@ const Content: FC<{ movie: IMovie }> = ({ movie }) => {
 					<MaterialIcon name="MdStarRate" />
 					<span>{movie.rating.toFixed(1)}</span>
 				</div>
+				<FavoriteButton movieId={movie._id}/>
 			</div>
+
+
 		</div>
 	)
 }

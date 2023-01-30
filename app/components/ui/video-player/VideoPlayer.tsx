@@ -2,7 +2,7 @@ import cn from 'classnames'
 import { ChangeEvent, FC, useEffect, useState } from 'react'
 
 import { useAuth } from '@/hooks/auth/useAuth'
-import { useVideo } from '@/hooks/useVideo'
+import { useVideo } from '@/hooks/movie/useVideo'
 
 import AuthPlaceholder from './AuthPlaceholder/AuthPlaceholder'
 import styles from './VideoPlayer.module.scss'

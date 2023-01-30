@@ -10,14 +10,15 @@ import { toastError } from '@/utils/toast/toast-error'
 import { toast } from 'react-toastify'
 
 export const useProfile = (setValue: UseFormSetValue<IProfileField>) => {
+
 	const { isLoading } = useQuery(
 		'user-profile',
 		() => UserService.getProfile(),
 		{
-			onSuccess({ data }) {
+			onSuccess: ({ data }) => {
 				setValue('email', data.email)
 			},
-			onError(error) {
+			onError: (error) =>{
 				toastError(error, 'Cant get profile')
 			},
 		}
@@ -27,10 +28,10 @@ export const useProfile = (setValue: UseFormSetValue<IProfileField>) => {
 		'edit user-profile',
 		(data: IProfileField) => UserService.updateProfile(data),
 		{
-			onSuccess() {
+			onSuccess: () => {
 				toast.success('Profile was successfully updated')
 			},
-			onError(error) {
+			onError: (error) => {
 				toastError(error, 'Profile updated')
 			},
 		}

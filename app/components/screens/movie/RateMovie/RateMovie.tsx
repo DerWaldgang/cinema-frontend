@@ -2,7 +2,7 @@ import { FC } from 'react'
 import StarRating from 'react-star-rating-component'
 
 import { useAuth } from '@/hooks/auth/useAuth'
-import { useRateMovie } from '@/hooks/useRateMovie'
+import { useRateMovie } from '@/hooks/movie/useRateMovie'
 
 import styles from './RateMovie.module.scss'
 
@@ -10,6 +10,7 @@ const RateMovie: FC<{ movieId: string }> = ({ movieId }) => {
 	const { user } = useAuth()
 
 	const { isSended, rating, handleClick } = useRateMovie(movieId)
+	
 	return user ? (
 		<div className={styles.wrapper}>
 			<h3>How do you like the movie?</h3>

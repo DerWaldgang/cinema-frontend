@@ -20,11 +20,11 @@ export const useUserEdit = (setValue: UseFormSetValue<IUserEditInput>) => {
 		[' get user by id', userId],
 		() => UserService.getByIdUser(userId),
 		{
-			onSuccess({ data }) {
+			onSuccess: ({ data }) => {
 				setValue('email', data.email)
 				setValue('isAdmin', data.isAdmin)
 			},
-			onError(error) {
+			onError: (error) => {
 				toastError(error, 'Cant get the user')
 			},
 			enabled: !!query.id, // enabled if there is query.id
@@ -35,11 +35,11 @@ export const useUserEdit = (setValue: UseFormSetValue<IUserEditInput>) => {
 		'edit user',
 		(data: IUserEditInput) => UserService.updateUser(userId, data),
 		{
-			onSuccess() {
+			onSuccess: () => {
 				toast.success('User successfully updated')
 				push(getAdminUrl('users'))
 			},
-			onError(error) {
+			onError: (error) => {
 				toastError(error, 'User not updated')
 			},
 		}

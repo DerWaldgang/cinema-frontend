@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import { ChangeEvent, useMemo, useState } from 'react'
 import { useMutation, useQuery } from 'react-query'
-
+import { toast } from 'react-toastify'
 
 import { ITableItem } from '@/components/ui/admin-ui/admin-table/AdminTable/admin-table.interface'
 
@@ -12,7 +12,6 @@ import { toastError } from '@/utils/toast/toast-error'
 import { getAdminUrl } from '@/config/url.config'
 
 import { useDebounce } from '../useDebounce'
-import { toast } from 'react-toastify'
 
 export const useActors = () => {
 	const [searchTerm, setSearchTerm] = useState('')
@@ -30,7 +29,7 @@ export const useActors = () => {
 						items: [actor.name, String(actor.countMovies)],
 					})
 				),
-			onError(error) {
+			onError: (error) => {
 				toastError(error, 'actor list')
 			},
 		}

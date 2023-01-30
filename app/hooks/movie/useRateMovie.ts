@@ -6,7 +6,7 @@ import { ratingService } from '@/services/rating.service'
 
 import { toastError } from '@/utils/toast/toast-error'
 import { toast } from 'react-toastify'
-import { MovieService } from '@/services/movie.service'
+import { usePopularMovies } from './usePopularMovies'
 
 export const useRateMovie = (movieId: string) => {
 	const [rating, setRating] = useState(0)
@@ -16,37 +16,34 @@ export const useRateMovie = (movieId: string) => {
 		['user movie rating', movieId],
 		() => ratingService.getByUserMovieRating(movieId),
 		{
-			onSuccess({ data }) {
+			onSuccess:({ data }) => {
 				setRating(data)
 			},
-			onError(error) {
+			onError:(error)=> {
 				toastError(error, 'Cant get the movie rating')
 			},
 			enabled: !!movieId, // enabled if there is query.id
 		}
 	)
 
-	const { refetch: refetchMostPopular} = useQuery(
-		'Get most popular movies in sidebar',
-		() => MovieService.getMostPopularMovies()
-	)
+	const {refetchPopularMovies} = usePopularMovies()
 
 	const { mutateAsync: rateMovie } = useMutation(
 		'set movie rating',
 		({ value }: { value: number }) => ratingService.setRating(movieId, value),
 		{
-			onSuccess() {
+			onSuccess: () => {
 				toast.success(
 					'The movie rating successfully updated'
 				)
 				setIsSended(true)
 				refetch()
-				refetchMostPopular()
+				refetchPopularMovies()
 				setTimeout(() => {
 					setIsSended(false)
 				}, 2400)
 			},
-			onError(error) {
+			onError: (error) => {
 				toastError(error, 'The movie rating not updated')
 			},
 		}
