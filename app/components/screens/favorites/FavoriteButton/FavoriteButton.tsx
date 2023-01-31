@@ -10,8 +10,14 @@ import { toastError } from '@/utils/toast/toast-error'
 
 import styles from './FavoriteButton.module.scss'
 import HeartImage from './heart-animation.png'
+import { useAuth } from '@/hooks/auth/useAuth'
 
 const FavoriteButton: FC<{ movieId: string, isAbsolute?: boolean }> = ({ movieId, isAbsolute}) => {
+
+	const {user} = useAuth()
+
+	if(!user) return null
+	
 	const [isHeartClicked, setIsHeartClicked] = useState(false)
 
 	const { favoriteMovies, refetch } = useFavorites()

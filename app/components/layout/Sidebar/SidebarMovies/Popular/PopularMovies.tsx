@@ -7,7 +7,7 @@ import { usePopularMovies } from '@/hooks/movie/usePopularMovies'
 import MovieList from '../MovieList'
 
 const PopularMovies = () => {
-	const { isLoading, popularMovies, refetchPopularMovies } = usePopularMovies()
+	const { isLoading, popularMovies } = usePopularMovies()
 
 	return isLoading ? (
 		<div className="mt-11">

@@ -10,7 +10,7 @@
 	}
 
 	.item {
-		@apply mb-4 flex items-stretch gap-4;
+		@apply mb-4 flex items-stretch gap-4 w-52 h-24;
 
 		> a {
 			> img {
@@ -27,7 +27,7 @@
 
 		.info {
 			@apply ml-4 flex flex-col justify-between;
-			width: 67%;
+			width: 60%;
 
 			.title {
 				@apply text-white text-lg font-medium truncate;

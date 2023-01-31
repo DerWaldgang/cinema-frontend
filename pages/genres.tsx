@@ -19,7 +19,6 @@ const CatalogsPage: NextPage<{collections: ICatalog[]}> = ({collections}) => {
 export const getStaticProps: GetStaticProps = async() => {
     try {
         const {data: collections} = await GenreService.getMovieCatalogs()
-        
 
         return {
             props: {

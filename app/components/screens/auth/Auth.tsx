@@ -46,7 +46,7 @@ const Auth: FC = () => {
 					<Heading title="Authorization" className="mb-6" />
 
 					<AuthInputField
-						formState={formState}
+						errors={formState.errors}
 						register={registerInput}
 						isPasswordRequired
 					/>

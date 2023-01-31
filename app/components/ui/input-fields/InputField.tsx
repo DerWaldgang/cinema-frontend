@@ -9,7 +9,7 @@ const InputField = forwardRef<HTMLInputElement, IInputField>(({placeholder, erro
 	return <div className={cn(styles.common , styles.input)} style={style}>
         <label>
             <span>{placeholder}</span>
-            <input type={type} ref={ref} {...rest}/>
+            <input type={type} ref={ref} {...rest} autoComplete="off"/>
         </label>
         {error && <div className={styles.error}>{error.message}</div>}
     </div>

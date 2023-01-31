@@ -1,9 +1,10 @@
 import { NextPage } from 'next'
+import dynamic from 'next/dynamic'
 
-import Favorites from '@/components/screens/favorites/Favorites'
+const DynamicFavorites = dynamic(() => import('@/components/screens/favorites/Favorites'))
 
 const FavoritesPage: NextPage = () => {
-	return <Favorites />
+	return <DynamicFavorites />
 }
 
 export default FavoritesPage

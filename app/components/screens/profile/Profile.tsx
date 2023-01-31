@@ -28,7 +28,7 @@ const Profile: FC = () => {
 				{isLoading ? (
 					<SkeletonLoading count={2} className='h-20'/>
 				) : (
-					<AuthInputField formState={formState} register={register} />
+					<AuthInputField errors={formState.errors} register={register} />
 				)}
 
 				<Button type="submit">Update</Button>

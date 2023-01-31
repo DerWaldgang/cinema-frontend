@@ -19,6 +19,7 @@ const NavigationActorPage: NextPage<IActorPage> = ({ movies, actor }) => {
 		<MoviesCatalog
 			movies={movies || []}
 			title={actor.name}
+			description={`Here you can find movies with your favorite actor - ${actor.name}`}
 		/>
 	) : (
 		<Error404 />

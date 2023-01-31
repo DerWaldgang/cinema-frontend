@@ -7,10 +7,12 @@ import { ratingService } from '@/services/rating.service'
 import { toastError } from '@/utils/toast/toast-error'
 import { toast } from 'react-toastify'
 import { usePopularMovies } from './usePopularMovies'
+import { useAuth } from '../auth/useAuth'
 
 export const useRateMovie = (movieId: string) => {
 	const [rating, setRating] = useState(0)
 	const [isSended, setIsSended] = useState(false)
+	const {user} = useAuth()
 
 	const { refetch } = useQuery(
 		['user movie rating', movieId],
@@ -22,7 +24,7 @@ export const useRateMovie = (movieId: string) => {
 			onError:(error)=> {
 				toastError(error, 'Cant get the movie rating')
 			},
-			enabled: !!movieId, // enabled if there is query.id
+			enabled: !!movieId && !!user, // enabled if there is query.id
 		}
 	)
 

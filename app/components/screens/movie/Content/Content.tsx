@@ -8,8 +8,9 @@ import { getActorSlugUrl, getGenreSlugUrl } from '@/config/url.config'
 
 import styles from './Content.module.scss'
 import ContentList from './ContentList/ContentList'
-import FavoriteButton from '../../favorites/FavoriteButton/FavoriteButton'
+import dynamic from 'next/dynamic'
 
+const DynamicFavoriteButton = dynamic(() => import('../../favorites/FavoriteButton/FavoriteButton')) 
 const Content: FC<{ movie: IMovie }> = ({ movie }) => {
 	return (
 		<div className={styles.content}>
@@ -43,7 +44,7 @@ const Content: FC<{ movie: IMovie }> = ({ movie }) => {
 					<MaterialIcon name="MdStarRate" />
 					<span>{movie.rating.toFixed(1)}</span>
 				</div>
-				<FavoriteButton movieId={movie._id}/>
+				<DynamicFavoriteButton movieId={movie._id}/>
 			</div>
 
 

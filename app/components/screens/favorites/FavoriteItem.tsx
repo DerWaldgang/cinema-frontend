@@ -2,16 +2,17 @@ import { FC } from 'react'
 
 import { IMovie } from '@/shared/types/movies.types'
 
-import FavoriteButton from './FavoriteButton/FavoriteButton'
+const DynamicFavoriteButton = dynamic(() => import('./FavoriteButton/FavoriteButton')) 
 import styles from './Favorites.module.scss'
 import Link from 'next/link'
 import Image from 'next/image'
 import { getMovieSlugUrl } from '@/config/url.config'
+import dynamic from 'next/dynamic'
 
 const FavoriteItem: FC<{ movie: IMovie }> = ({ movie }) => {
 	return (
 		<div className={styles.itemWrapper}>
-			<FavoriteButton movieId={movie._id} isAbsolute/>
+			<DynamicFavoriteButton movieId={movie._id} isAbsolute/>
 
 			<Link href={getMovieSlugUrl(movie.slug)} className={styles.item}>
 				<Image

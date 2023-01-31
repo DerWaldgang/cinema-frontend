@@ -4,8 +4,9 @@ import { IGenre } from '@/shared/types/movies.types'
 
 import axios, { axiosClassic } from 'api/interceptors'
 
-import { getGenresUrl } from '@/config/api.config'
+import { API_SERVER_URL, API_URL, getGenresUrl } from '@/config/api.config'
 import { ICatalog } from '@/components/screens/catalogs-collections/catalogs.interface'
+import { IS_PRODUCTION } from '@/config/constants.config'
 
 
 export const GenreService = {
@@ -20,14 +21,21 @@ export const GenreService = {
 	},
 
 	async getBySlugGenre(slug: string) {
-		return axiosClassic.get<IGenre>(getGenresUrl(`by-slug/${slug}`))
+		const URL = IS_PRODUCTION ? API_SERVER_URL : API_URL
+
+		const data: IGenre = await fetch(`${URL}/genres/by-slug/${slug}`, {
+			headers: {
+				'Content-Type': 'application/json'
+			  },
+		}).then(res => res.json())
+		// return axiosClassic.get<IGenre>(getGenresUrl(`by-slug/${slug}`)) // DOESN'T WORK IN PRODUCT ???
+		return data
 	},
 
 	async getMovieCatalogs() {
 		return axiosClassic.get<ICatalog[]>(getGenresUrl(`catalogs`))
 	},
 
-    // IGenreEditInput ? 
 	async getByIdGenre(_id?: string) {
 		return axios.get<IGenreEditInput>(getGenresUrl(`${_id}`))
 	},

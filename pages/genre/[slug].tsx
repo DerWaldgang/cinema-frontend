@@ -15,6 +15,7 @@ export interface IGenrePage {
 }
 
 const NavigationGenrePage: NextPage<IGenrePage> = ({ movies, genre }) => {
+
 	return genre ? (
 		<MoviesCatalog
 			movies={movies || []}
@@ -47,10 +48,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
 	try {
-		const { data: genre } = await GenreService.getBySlugGenre(
+		const genre  = await GenreService.getBySlugGenre(
 			String(params?.slug)
 		)
-		const { data: movies } = await MovieService.getMoviesByGenres([genre._id])
+		const movies = await MovieService.getMoviesByGenres([genre._id])
+
 		return {
 			props: {
 				movies,

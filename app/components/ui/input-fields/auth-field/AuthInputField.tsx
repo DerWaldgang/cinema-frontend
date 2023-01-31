@@ -1,6 +1,8 @@
 import { FC } from 'react'
 import {
-	FormState,
+	FieldError,
+	FieldErrorsImpl,
+	Merge,
 	UseFormRegister,
 } from 'react-hook-form'
 
@@ -8,25 +10,25 @@ import { validEmail } from '@/shared/regex/auth-field.regex'
 
 import InputField from '../InputField'
 
-// interface IAuthInputField {
-// 	register: UseFormRegister<any>
-// 	formState: FormState<any>
-// 	isPasswordRequired?: boolean
-// }
+interface IAuthInputField {
+	register: UseFormRegister<any>
+	errors: Partial< FieldErrorsImpl<{ email: string, password: string }> >
+	isPasswordRequired?: boolean
+}
 
 // TODO: implement rigth TS for InputField
 
 // error={errors.message} TODO: error={errors.email}
-const AuthInputField = ({
+const AuthInputField: FC<IAuthInputField> = ({
 	register,
-	formState: { errors },
+	errors,
 	isPasswordRequired = false,
 }) => {
 	return (
 		<>
 			<InputField
 				placeholder="E-mail"
-				error={errors.email}
+				error={errors?.email}
 				{...register('email', {
 					required: 'Email is required',
 					pattern: {
@@ -37,8 +39,8 @@ const AuthInputField = ({
 			/>
 			<InputField
 				placeholder="Password"
-                type='password'
-				error={errors.password}
+				type="password"
+				error={errors?.password}
 				{...register(
 					'password',
 					isPasswordRequired

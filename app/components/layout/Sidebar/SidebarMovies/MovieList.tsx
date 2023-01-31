@@ -16,7 +16,7 @@ const MovieList: FC<IMovieList> = ({ title, link, movies }) => {
 				<SpanPlug text={'No favorites'}/>
 			)}
 			<Link href={link} className={styles.button}>
-				See more
+				{link === '/trending' ? 'See more popular' : 'My Favorites'}
 			</Link>
 		</div>
 	)

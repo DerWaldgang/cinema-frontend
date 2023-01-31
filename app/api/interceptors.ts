@@ -6,14 +6,18 @@ import { AuthService } from '@/services/auth/auth.service'
 
 import { API_SERVER_URL, API_URL } from '@/config/api.config'
 
-import { errorCatch } from './api.helpers'
+import { errorCatch, getContentTypeHTTP } from './api.helpers'
 import { IS_PRODUCTION } from '@/config/constants.config'
+
+export const axiosClassic = axios.create({
+	baseURL: IS_PRODUCTION ? API_SERVER_URL : API_URL,
+	headers: getContentTypeHTTP(),
+})
 
 const instance = axios.create({
 	baseURL: API_URL,
-	headers: {
-		'Content-Type': 'application/json',
-	},
+	// baseURL: IS_PRODUCTION ? API_SERVER_URL : API_URL,
+	headers: getContentTypeHTTP()
 })
 
 instance.interceptors.request.use((config) => {
@@ -54,9 +58,4 @@ instance.interceptors.response.use(
 
 export default instance
 
-export const axiosClassic = axios.create({
-	baseURL: IS_PRODUCTION? API_SERVER_URL : API_URL,
-	headers: {
-		'Content-Type': 'application/json',
-	},
-})
+

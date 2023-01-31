@@ -4,7 +4,8 @@ import { IMovie } from '@/shared/types/movies.types'
 
 import axios, { axiosClassic } from 'api/interceptors'
 
-import { getMoviesUrl } from '@/config/api.config'
+import { API_SERVER_URL, API_URL, getMoviesUrl } from '@/config/api.config'
+import { IS_PRODUCTION } from '@/config/constants.config'
 
 export const MovieService = {
 	async getAllMovies(searchTerm?: string) {
@@ -28,9 +29,22 @@ export const MovieService = {
 	},
 
 	async getMoviesByGenres(genreIds: string[]) {
-		return axiosClassic.post<IMovie[]>(getMoviesUrl('/by-genres'), {
-			genreIds
-		})
+		const URL = IS_PRODUCTION ? API_SERVER_URL : API_URL
+
+		const data: IMovie[] = await fetch(`${URL}/movies/by-genres/`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			  },
+			  body: JSON.stringify({genreIds})
+		}).then(res => res.json())
+
+		// const data = axiosClassic.post<IMovie[]>(getMoviesUrl('/by-genres'), {
+		// 	genreIds
+		// }) // DOESN'T WORK IN PRODUCT ???
+
+		return data
+
 	},
 
 	async getMoviesByActor(actorId: string) {
